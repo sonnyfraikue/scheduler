@@ -164,7 +164,8 @@ module.exports = function (grunt) {
     wiredep: {
       app: {
         ignorePath: /^\/|\.\.\//,
-        src: ['<%= config.app %>/index.html']
+        src: ['<%= config.app %>/index.html'],
+        exclude: ['bower_components/bootstrap/dist/js/bootstrap.js']
       }
     },
 
@@ -294,6 +295,12 @@ module.exports = function (grunt) {
         }, {
           src: 'node_modules/apache-server-configs/dist/.htaccess',
           dest: '<%= config.dist %>/.htaccess'
+        }, {
+          expand: true,
+          dot: true,
+          cwd: 'bower_components/bootstrap/dist',
+          src: 'fonts/*',
+          dest: '<%= config.dist %>'
         }]
       },
       styles: {
